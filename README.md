@@ -35,6 +35,8 @@ The program is run at the command line using ```python make_mask.py N rad mask_f
 0. **Balance exploratory/educational goals with real-time goals**. This software is intended to be neither the highest-performance AO software nor the most [literate](https://en.wikipedia.org/wiki/Literate_programming), but to balance both goals. This is hard to achieve, and requires judgement calls, but some examples:
 
     a. We want the mirror object to be useful in real-time operation, running in its own thread, but also to be instantiable in [REPL](https://en.wikipedia.org/wiki/Read-eval-print-loop). Therefore, even though it may be faster and simpler to subclass a ```threading.Thread``` or ```QThread```, instead create threads and move the objects to threads as needed only in those classes used in the real-time case, such as ```ciao.Loop```. The same goes for mutexes; if employed, lock and unlock them from the real-time class, and don't employ them in classes meant to be used in both contexts.
+    
+    b. Qt signals and slots are used for event-driven programming, necessary for real-time operation. As with threads, above, instead of subclassing Qt signals and slots, use Qt decorators. This way, the functions can be called in REPL without trouble, but can also call each other via events in the real-time case.
 
 1. **Use open source tools whenever possible**. The only exceptions should be closed-source drivers for AO components such as cameras and deformable mirrors.
 
