@@ -3,7 +3,11 @@ Python tools for controlling, simulating, and characterizing adaptive optics (AO
 
 # Setup and installation
 
-1. Install [Notepad++](https://notepad-plus-plus.org/download)
+## Prerequisites
+
+These prerequisites assume you are using the default hardware (Alpao mirror and a SHWS based on a Basler Ace USB3 camera).
+
+1. Install [Notepad++](https://notepad-plus-plus.org/download) or another editor.
 2. Install [Git](https://git-scm.com/download/win)
 3. Install [Anaconda for Python 2.7](https://www.anaconda.com/distribution/#download-section)
 4. Install Alpao drivers
@@ -12,11 +16,11 @@ Python tools for controlling, simulating, and characterizing adaptive optics (AO
 7. Install [Basler Pylon 5.2](https://www.baslerweb.com/en/sales-support/downloads/software-downloads/pylon-5-2-0-windows/)
 8. Install [pypylon](https://github.com/basler/pypylon/releases/download/1.4.0/pypylon-1.4.0-cp27-cp27m-win_amd64.whl). First download, then use 'pip install pypylon...amd64.whl'.
 
-# 
+## Environment variable
+
+Optionally, set an environment variable ```CIAO_ROOT`` to this repository's location, including the ```/ciao```, e.g. ```C:\programs\ciao```.
 
 # The configuration file, ```config.py```
-
-\include{./config.py}
 
 # Creating mask files
 
