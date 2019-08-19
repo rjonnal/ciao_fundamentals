@@ -18,7 +18,7 @@ These prerequisites assume you are using the default hardware (Alpao mirror and 
 
 ## Environment variable
 
-Optionally, set an environment variable ```CIAO_ROOT`` to this repository's location, including the ```/ciao```, e.g. ```C:\programs\ciao```.
+Optionally, set an environment variable ```CIAO_ROOT`` to this repository's location, including the ```ciao```, e.g. ```C:\\programs\\ciao```.
 
 # The configuration file, ```config.py```
 
@@ -31,6 +31,10 @@ The program ```ciao/calibration/make_mask.py``` can be used to generate both mas
 The program is run at the command line using ```python make_mask.py N rad mask_filename.txt```, where ```N``` specifies the size of the (square) mask, ```rad``` specifies the radius of the inscribed active area, and ```mask_filename.txt``` is the file in which to store the output.
 
 # Design principles
+
+0. **Balance exploratory/educational goals with real-time goals**. This software is intended to be neither the highest-performance AO software nor the most [literate](https://en.wikipedia.org/wiki/Literate_programming), but to balance both goals. This is hard to achieve, and requires judgement calls, but some examples:
+
+    a. We want the mirror object to be useful in real-time operation, running in its own thread, but also to be instantiable in [REPL](https://en.wikipedia.org/wiki/Read-eval-print-loop). Therefore, even though it may be faster and simpler to subclass a ```threading.Thread``` or ```QThread```, instead create threads and move the objects to threads as needed only in those classes used in the real-time case, such as ```ciao.Loop```. The same goes for mutexes; if employed, lock and unlock them from the real-time class, and don't employ them in classes meant to be used in both contexts.
 
 1. **Use open source tools whenever possible**. The only exceptions should be closed-source drivers for AO components such as cameras and deformable mirrors.
 
