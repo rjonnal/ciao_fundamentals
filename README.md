@@ -16,7 +16,7 @@ Python tools for controlling, simulating, and characterizing adaptive optics (AO
 
 # The configuration file, ```config.py```
 
-
+\include{./config.py}
 
 # Creating mask files
 
@@ -31,6 +31,10 @@ The program is run at the command line using ```python make_mask.py N rad mask_f
 1. **Use open source tools whenever possible**. The only exceptions should be closed-source drivers for AO components such as cameras and deformable mirrors.
 
 2. **Use human-readable configuration, initialization, and log files.** Whenever possible, use plain text files, along with delimiters. Configuration and initialization files should be written in Python whenever possible.
+
+3. **Avoid overspecification.** Specify parameters of the system in only one place. For example, since the number of lenslets is specified by the SHWS mask, don't specify it elsewhere. The size of the poke matrix, for instance, is implied by the SHWS and mirror masks, and needn't be specified anywhere else.
+
+4. **Variable naming.** Class names should be one word with a capitalized first letter; if multiple words are necessary, use CamelCase. Variable names should be descriptive, with underscores between words. In order to maximize the exploratory and educational value of the code, when a variable has a unit, please append it to the end of the variable name, e.g. ```wavelength_m = 800e-9```.
 
 # Topics for conversation
 

@@ -2,7 +2,6 @@
 # ciao installation. Where appropriate, each parameter's final
 # characters represent units. 
 
-
 ##############################################################
 # A unique, permanent identifier for the optical system
 # associated with this installation of ciao:
