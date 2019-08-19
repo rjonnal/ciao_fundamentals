@@ -34,15 +34,15 @@ dm_directory = ciao_root + '/etc/dm/'
 poke_directory = ciao_root + '/etc/ctrl/'
 logging_directory = ciao_root + '/log'
 simulator_cache_directory = '.simulator_cache'
-
+simulated_camera_image_directory = ciao_root + '/data/spots/'
     
-reference_coordinates_filename = reference_directory + '20190402102213_coords.txt'
+#reference_coordinates_filename = reference_directory + '20190402102213_coords.txt'
 reference_mask_filename = reference_directory + 'reference_mask.txt'
-poke_filename = poke_directory + '20190402103411_poke.txt'
+#poke_filename = poke_directory + '20190402103411_poke.txt'
 
 # sensor settings:
 reference_n_measurements = 10
-lenslet_pitch_m = 300e-6
+lenslet_pitch_m = 500e-6
 lenslet_focal_length_m = 20.0e-3
 pixel_size_m = 11e-6
 beam_diameter_m = 10e-3
