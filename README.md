@@ -42,6 +42,9 @@ Several approaches have been used to generate these coordinates, but a common ap
 
 2. Move ```temp.txt``` into the ```etc/ref``` directory and define ```reference_coordinates_filename``` in ```config.py``` accordingly.
 
+3. Run CIAO and verify that the spots are roughly centered in the search boxes.
+
+4. Click **```Record reference```**. This may need to be done more than once, because background noise in a search box that's not centered at the spot's center of mass causes a bias toward the reference coordinates, i.e. an underestimate of error. The residual wavefront error RMS may be used to verify that the coordinates have been recorded correctly, since apparent error due to shot noise will eventually reach a stable minimum. Typically this value should be $\leq 10\;nm$.
 
 # Design principles
 
@@ -64,3 +67,4 @@ Several approaches have been used to generate these coordinates, but a common ap
 1. Other than condition number, what algorithmic or numerical tests can be employed to predict the performance of a given poke/control matrix?
 
 2. What rules of thumb should be employed when deciding whether a spot should be used? Put differently, how should one choose ```rad``` when generating a SHWS mask, as described above?
+

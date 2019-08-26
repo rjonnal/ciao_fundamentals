@@ -1,4 +1,2 @@
-from components import cameras
-from components import sensors
-from components import tools
+from components import cameras,sensors,tools,mirrors,loops,ui
 import config

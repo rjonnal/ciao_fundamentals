@@ -36,9 +36,17 @@ logging_directory = ciao_root + '/log'
 simulator_cache_directory = '.simulator_cache'
 simulated_camera_image_directory = ciao_root + '/data/spots/'
 
-reference_coordinates_filename = reference_directory + 'reference_coordinates.txt'
+
+# The reference coordinates need a starting point (see README.md), and these
+# were recorded using calibration/record_reference_coordinates.py:
+reference_coordinates_filename = reference_directory + 'reference_initial.txt'
+
+# reference_coordinates_filename = reference_directory + 'reference_coordinates.txt'
+
+
+
 reference_mask_filename = reference_directory + 'reference_mask.txt'
-#poke_filename = poke_directory + '20190402103411_poke.txt'
+poke_filename = poke_directory + 'dummy_poke.txt'
 
 # sensor settings:
 reference_n_measurements = 10
