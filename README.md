@@ -20,15 +20,15 @@ These prerequisites assume you are using the default hardware (Alpao mirror and 
 
 Optionally, set an environment variable ```CIAO_ROOT`` to this repository's location, including the ```ciao```, e.g. ```C:\\programs\\ciao```.
 
-# The configuration file, ```config.py```
-
 # Creating mask files
 
 The reference mask is a two-dimensional arrays of zeros and ones which specifies which of the Shack-Hartmann lenslets to use. The mirror mask specifies, similarly, the logical locations of active mirror actuators. 
 
 The program ```ciao/calibration/make_mask.py``` can be used to generate both mask files. Premade masks can be found in ```ciao/calibration/example_masks/```.
 
-The program is run at the command line using ```python make_mask.py N rad mask_filename.txt```, where ```N``` specifies the size of the (square) mask, ```rad``` specifies the radius of the inscribed active area, and ```mask_filename.txt``` is the file in which to store the output.
+After navigating into the ```calibration``` directory, the program is run at the command line using ```python make_mask.py N rad mask_filename.txt```, where ```N``` specifies the size of the (square) mask, ```rad``` specifies the radius of the inscribed active area, and ```mask_filename.txt``` is the file in which to store the output.
+
+Masks for the mirror and Shack-Hartmann lenslet array must be created, and copied into the ```etc/dm``` and ```etc/ref``` directories.
 
 # Creating a reference coordinate file
 

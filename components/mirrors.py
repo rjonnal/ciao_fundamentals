@@ -110,8 +110,8 @@ class Mirror(QObject):
         self.flatten()
         
         self.timer = QTimer()
-        self.timer.timeout.connect(self.update)
-        self.timer.start(1.0/self.update_rate*1000.0)
+        #self.timer.timeout.connect(self.update)
+        #self.timer.start(1.0/self.update_rate*1000.0)
         self.frame_timer = FrameTimer('Mirror',verbose=False)
         self.logging = False
         self.paused = False

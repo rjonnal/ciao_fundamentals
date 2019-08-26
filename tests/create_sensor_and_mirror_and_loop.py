@@ -4,7 +4,8 @@ import numpy as np
 import sys
 from PyQt5.QtWidgets import QApplication
 
-cam = ciao.cameras.SimulatedCamera()
+#cam = ciao.cameras.SimulatedCamera()
+cam = ciao.cameras.PylonCamera()
 sensor = ciao.sensors.Sensor(cam)
 
 sb = sensor.search_boxes

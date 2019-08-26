@@ -55,6 +55,16 @@ class Loop(QObject):
         self.sensor.moveToThread(self.sensor_thread)
         self.mirror.moveToThread(self.mirror_thread)
 
+        # We have to connect the mirror timer's timeout signal
+        # to the mirror update slot, and then start the timer
+        # here. It's a little awkward, but the mirror timer
+        # cannot be started until it's in its own thread, and
+        # because we've used moveToThread (instead of
+        # making Mirror a QThread subclass).
+        self.mirror.timer.timeout.connect(self.mirror.update)
+        self.mirror.timer.start(1.0/self.mirror.update_rate*1000.0)
+
+        
         self.sensor_thread.started.connect(self.sensor.update)
         self.finished.connect(self.sensor.update)
         self.sensor.finished.connect(self.update)
