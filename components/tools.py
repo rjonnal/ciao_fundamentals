@@ -7,6 +7,7 @@ import psutil
 import numpy as np
 from PyQt5.QtGui import qRgb
 import time
+import scipy.signal as sps
 
 def get_process():
     return psutil.Process(os.getpid())
@@ -57,3 +58,13 @@ def colortable(colormap_name):
         table[-1] = qRgb(255,0,0)
         
     return table
+
+def gaussian_convolve(im,sigma,mode='same',hscale=1.0,vscale=1.0):
+    if not sigma:
+        return im
+    else:
+        kernel_width = np.ceil(sigma*8) # 4 standard deviations gets pretty close to zero
+        vec = np.arange(kernel_width)-kernel_width/2.0
+        XX,YY = np.meshgrid(vec,vec)
+        g = np.exp(-((XX/hscale)**2+(YY/vscale)**2)/2.0/sigma**2)
+        return sps.fftconvolve(im,g,mode=mode)/np.sum(g)

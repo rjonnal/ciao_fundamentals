@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 cam = ciao.cameras.SimulatedCamera()
 sensor = ciao.sensors.Sensor(cam)
 
-#sensor.sense()
+sensor.sense()
 sensor.record_reference()
 
 print dir(cam)

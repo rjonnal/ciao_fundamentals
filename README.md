@@ -32,6 +32,17 @@ The program is run at the command line using ```python make_mask.py N rad mask_f
 
 # Creating a reference coordinate file
 
+The reference coordinates are the (x,y) locations on the sensor, in pixel units, where spots are expected to fall when a planar wavefront is incident on the sensor. These are the coordinates with which the boundaries of the search boxes are defined, and the coordinates with which the local slope of the wavefront is computed, used to drive the mirror in closed loop or to reconstruct the wavefront and measure wavefront error.
+
+The coordinates are stored in a file named, e.g. ```reference_coordinates.txt``` in the ```etc/ref/``` directory. This should be a comma-delimited plain text file, with N rows and two items per row, where N is the number of active lenslets (see **masks** above) and the two items are x and y coordinates, respectively.
+
+Several approaches have been used to generate these coordinates, but a common approach is to shine a collimated beam on the sensor and record the positions (centers of mass) of the resulting spots. There is a bit of a catch-22 in this approach, however, since the definition of search boxes and calculation of centers of mass require coordinates to get started. A script, ```calibration/record_reference_coordinates.py``` is included to generate in initial set of coordinates, which can be used to bootstrap a more accurate set. It works by using the geometric centers of the lenslets to generate a fake spots image, and then cross-correlating it with a real image from the sensor. The process proceeds as follows:
+
+1. Run ```python record_reference_coordinates.py N temp.txt```, where ```N``` is the number of sensor images to average.
+
+2. Move ```temp.txt``` into the ```etc/ref``` directory and define ```reference_coordinates_filename``` in ```config.py``` accordingly.
+
+
 # Design principles
 
 0. **Balance exploratory/educational goals with real-time goals**. This software is intended to be neither the highest-performance AO software nor the most [literate](https://en.wikipedia.org/wiki/Literate_programming), but to balance both goals. This is hard to achieve, and requires judgement calls, but some examples:
