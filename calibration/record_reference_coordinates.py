@@ -81,6 +81,8 @@ if px>=sx//2:
 ref_xy = ref_xy+np.array([px,py])
 
 # Plot
+plt.imshow(template,cmap='gray')
+plt.figure()
 plt.imshow(im,cmap='gray')
 plt.plot(ref_xy[:,0],ref_xy[:,1],'rx')
 plt.show()

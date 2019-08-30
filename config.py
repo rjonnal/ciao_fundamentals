@@ -9,15 +9,15 @@ system_id = 'simulator'
 
 # An identifier for the deformable mirror, used to load
 # the correct configuration files:
-mirror_id = 'alpaoDM97-15-010'
+mirror_id = 'HSDM97-15-010'
 
-image_width_px = 1024
-image_height_px = 1024
+image_width_px = 2048
+image_height_px = 2048
 bit_depth = 12
 
 # the program will try to get this value from the environment
 # variable CIAO_ROOT, but if it cannot it will default to this
-ciao_root_default = '/home/rjonnal/code/ciao'
+ciao_root_default = 'c:/code/ciao'
 
 # read ciao_root from the environment, if possible
 # if not, use the default value specified above
@@ -25,7 +25,6 @@ try:
     import os
     ciao_root = os.environ['CIAO_ROOT']
 except Exception:
-    #ciao_root = 'c:/code/ciao'
     ciao_root = ciao_root_default
 
 # define some directories for configuration files
@@ -52,13 +51,13 @@ poke_filename = poke_directory + 'dummy_poke.txt'
 reference_n_measurements = 10
 lenslet_pitch_m = 300e-6
 lenslet_focal_length_m = 20.0e-3
-pixel_size_m = 11e-6
+pixel_size_m = 5.5e-6
 beam_diameter_m = 10e-3
 interface_scale_factor = 0.5
 wavelength_m = 840e-9
 estimate_background = True
 background_correction = -100
-search_box_half_width = 9#12
+search_box_half_width = 19 #9
 spots_threshold = 100.0
 sensor_update_rate = 20.0
 sensor_filter_lenslets = False
@@ -72,12 +71,12 @@ mirror_update_rate = 200.0
 mirror_n_actuators = 97
 mirror_flat_filename = ciao_root + '/etc/dm/flat.txt'
 mirror_mask_filename = ciao_root + '/etc/dm/mirror_mask.txt'
-mirror_command_max = 0.3
-mirror_command_min = -0.3
+mirror_command_max = 1.0
+mirror_command_min = -1.0
 mirror_settling_time_s = 0.001
 
-poke_command_max = 0.1
-poke_command_min = -0.1
+poke_command_max = 0.3
+poke_command_min = -0.3
 poke_n_command_steps = 5
 
 ctrl_dictionary_max_size = 10

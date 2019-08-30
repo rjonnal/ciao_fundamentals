@@ -6,7 +6,7 @@ cam = ciao.cameras.SimulatedCamera()
 sensor = ciao.sensors.Sensor(cam)
 
 sensor.sense()
-sensor.record_reference()
+
 
 sb = sensor.search_boxes
 plt.figure()

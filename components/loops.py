@@ -237,7 +237,7 @@ class Loop(QObject):
         chart_fn = os.path.join(ccfg.poke_directory,'%s_modes.pdf'%ns)
         np.savetxt(poke_fn,poke)
         np.savetxt(command_fn,commands)
-        save_modes_chart(chart_fn,poke,commands,self.mirror.mirror_mask)
+        save_modes_chart(chart_fn,poke,commands,self.mirror.mask)
 
         self.poke = Poke(poke)
         

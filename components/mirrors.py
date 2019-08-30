@@ -64,19 +64,26 @@ class MirrorControllerCtypes(MirrorController):
         
 class MirrorControllerPython(MirrorController):
     def __init__(self):
-    
+        sys.path.append(os.path.dirname(__file__))
+        from asdk import DM
         super(MirrorControllerPython,self).__init__()        
         self.mirror_id = ccfg.mirror_id
-        self.dm = PyAcedev5(self.mirror_id)
-        self.command = self.dm.values
-        self.send()
+        #self.dm = DM(os.path.join(ccfg.dm_directory,self.mirror_id))
+        self.dm = DM(self.mirror_id)
+        
+        n_actuators_queried = int( self.dm.Get('NBOfActuator') )
+        try:
+            assert n_actuators_queried==ccfg.mirror_n_actuators
+        except AssertionError as ae:
+            print 'Number of actuator disagreement.'
+        self.command[:] = 0.0 # this doesn't really matter
         
     def set(self,vec):
-        self.dm.values[:] = vec[:]
+        self.command[:] = vec[:]
         
     def send(self):
         self.clip()
-        return self.dm.Send()
+        return self.dm.Send(self.command)
         
 class Mirror(QObject):
     finished = pyqtSignal(QObject)
@@ -85,14 +92,11 @@ class Mirror(QObject):
         super(Mirror,self).__init__()
         
         try:
-            print 'Forcing simulated mirror!'
-            foo = bar
             self.controller = MirrorControllerPython()
+            print 'Mirror python initialization succeeded.'
         except Exception as e:
             print 'Mirror python initialization failed:',e
             try:
-                print 'Forcing simulated mirror!'
-                foo = bar
                 self.controller = MirrorControllerCtypes()
                 print 'Mirror c initialization succeeded.'
             except Exception as e:

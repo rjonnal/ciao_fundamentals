@@ -1,11 +1,10 @@
 import ciao
 from matplotlib import pyplot as plt
 
-cam = ciao.cameras.SimulatedCamera()
+cam = ciao.cameras.PylonCamera()
 sensor = ciao.sensors.Sensor(cam)
 
 sensor.sense()
-sensor.record_reference()
 
 sb = sensor.search_boxes
 plt.imshow(sensor.image,cmap='gray',aspect='auto')
